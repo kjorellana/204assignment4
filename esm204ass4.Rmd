@@ -57,9 +57,16 @@ damages_function <- function(warming){
 
 
 ```{r}
- warming %>%
+warming %>%
   mutate(damages_baseline = damages_function(warming_baseline)) %>%
-  mutate(damages_pulse = damages_function(warming_pulse))
+  mutate(damages_pulse = damages_function(warming_pulse))%>%
+  mutate(damages_difference = damages_function(warming_pulse) - damages_function(warming_baseline))%>%
+  mutate(damages_differnce_ton = (damages_function(warming_pulse) - damages_function(warming_baseline)) / 3500000000)
+
+
+```
+```{r}
+
 ```
 
 
