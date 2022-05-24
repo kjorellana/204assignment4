@@ -39,7 +39,7 @@ summary(model_damages_quadratic)
 ggplot(damages,aes(x=warming_2, y=damages)) + 
   geom_point( size=1, color = "goldenrod") +
   geom_line(data = damages, aes(x=warming_2, y=damages)) +
-  labs(x = "Warming (degrees C)", y = "Damages ($)", title = "Estimated damages (USD) per unit of additional warming (Celsius)") +
+  labs(x = "Warming (degrees C)", y = "Total Damages ($)", title = "Climate Change Damages Due to Warming") +
   theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
   theme(axis.title = element_text(face = "bold")) +
   theme(strip.background = element_rect(color= "white", fill = "gray"))
