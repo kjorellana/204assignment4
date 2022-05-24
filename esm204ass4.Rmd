@@ -22,3 +22,8 @@ warming <- read_csv(here("data", "warming.csv"))
 damages <- read_csv(here("data", "damages.csv"))
 ```
 
+```{r}
+model_damages <- lm(damages ~ warming, data = damages)
+summary(model_damages)
+```
+
