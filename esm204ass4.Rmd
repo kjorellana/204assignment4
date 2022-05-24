@@ -1,6 +1,6 @@
 ---
 title: "esm204ass4"
-author: "Katherine Orellana"
+author: "Cristina Mancilla, Kat Orellana, Ridhima Chaudhuri"
 date: "5/23/2022"
 output: html_document
 ---
@@ -68,36 +68,31 @@ warming <- warming %>%
 ggplot(warming, aes(x = year, y = damages_baseline)) +
   geom_point(size = 1, color= "blue") +
   labs(x = "Year", y = "Damages ($)", title = "Baseline damages ($)") +
-  theme_minimal(14) +
-  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
-  theme(axis.title = element_text(face = "bold")) +
-  theme(strip.background = element_rect(color= "white", fill = "gray"))
+  theme_grey(12) +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) 
 
 ggplot(warming, aes(x = year, y = damages_pulse)) +
   geom_point(size = 1, color= "blue") +
   labs(x = "Year", y = "Damages ($)", title = "Damages ($) with pulse") +
-  theme_minimal(14) +
-  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
-  theme(axis.title = element_text(face = "bold")) +
-  theme(strip.background = element_rect(color= "white", fill = "gray"))
+  theme_grey(12) +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) 
 
 ggplot(warming, aes(x = year, y = damages_difference)) +
   geom_point(size = 1, color="blue") +
   labs(x = "Year", y = "Difference in Damages (with and w/o pulse)($)", title = "Difference in Damages") +
-  theme_minimal(14) +
-  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
-  theme(axis.title = element_text(face = "bold")) +
-  theme(strip.background = element_rect(color= "white", fill = "gray"))
+  theme_grey(12) +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) 
 
 ggplot(warming, aes(x = year, y = damages_difference_ton )) +
   geom_point(size = 1, color="blue") +
   labs(x = "Year", y = "Damages ($/tonCO2)", title = "Difference in Damages (per ton of CO2)") +
-  theme_minimal(14) +
-  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
-  theme(axis.title = element_text(face = "bold")) +
-  theme(strip.background = element_rect(color= "white", fill = "gray"))
+  theme_grey(12) +
+  theme(plot.title = element_text(face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) 
 ```
-
 
 
 
@@ -127,10 +122,32 @@ social_cost_carbon <- c(sum(social_cost_damages$value_0),
                         sum(social_cost_damages$value_4), 
                         sum(social_cost_damages$value_5), 
                         sum(social_cost_damages$value_6))
+
+#create dataframe with the social cost of carbon sums and the discount rate 
+
 scc <- data.frame(discount_rates, social_cost_carbon)
 
 
 ```
+
+
+```{r}
+# graph the social cost of carbon and the discount rates (1 - 6%)
+
+ggplot(data = scc, aes(x = discount_rates, y = social_cost_carbon))+
+  geom_point(size = 1, color = "deeppink1")+
+  geom_line(color = "royalblue4")+ 
+  labs(x= "Discount Rate (%)", y = "Social Cost of Carbon ($/ton CO2)", title = "Social Cost of Carbon by Discount Rate (1-6%)") + 
+  theme_minimal()
+
+
+```
+
+
+
+
+
+
 
 
 4. The National Academies of Sciences, Engineering, and Medicine advised the government in a 2017 report to use the Ramsey Rule when discounting within the SCC calculation:
