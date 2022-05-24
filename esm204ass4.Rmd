@@ -95,7 +95,7 @@ ggplot(warming, aes(x = year, y = damages_pulse)) +
 ggplot(warming, aes(x = year, y = damages_difference)) +
   geom_point(size = 1,color= "blue") +
   labs(x = "Year", y = "Damages ($)", title = "Difference in Damages (with and w/o pulse)") +
-  theme_minimal(14) +
+  theme_grey(14) +
   theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
   theme(axis.title = element_text(face = "bold")) +
   theme(strip.background = element_rect(color= "white", fill = "gray"))
@@ -103,7 +103,7 @@ ggplot(warming, aes(x = year, y = damages_difference)) +
 ggplot(warming, aes(x = year, y = damages_differnce_ton )) +
   geom_point(size = 1, color= "blue") +
   labs(x = "Year", y = "Damages ($/tonCO2)", title = "Difference in damages with pulse per ton of CO2") +
-  theme_minimal(14) +
+  theme_grey(14) +
   theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
   theme(axis.title = element_text(face = "bold")) +
   theme(strip.background = element_rect(color= "white", fill = "gray"))
