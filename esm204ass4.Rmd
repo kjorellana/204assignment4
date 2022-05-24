@@ -1,6 +1,6 @@
 ---
 title: "esm204ass4"
-author: "Katherine Orellana"
+author: "Katherine Orellana, Cristina Mancilla, Ridhima Chaudhuri"
 date: "5/23/2022"
 output: html_document
 ---
