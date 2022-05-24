@@ -1,0 +1,24 @@
+---
+title: "esm204ass4"
+author: "Katherine Orellana"
+date: "5/23/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(rootSolve)
+library(janitor)
+library(tibble)
+library(here)
+```
+
+
+```{r}
+warming <- read_csv(here("data", "warming.csv"))
+
+damages <- read_csv(here("data", "damages.csv"))
+```
+
