@@ -50,8 +50,16 @@ ggplot(damages,aes(x=warming_2, y=damages)) +
 
 ```{r}
 damages_function <- function(warming){
-  damages <- damages_model$coefficient[1] * warming + damages_model$coefficient[2] * warming_2
+  damages <- model_damages_quadratic$coefficient[1] * warming + model_damages_quadratic$coefficient[2] * (warming^2)
+  return(damages)
 }
+```
+
+
+```{r}
+ warming %>%
+  mutate(damages_baseline = damages_function(warming_baseline)) %>%
+  mutate(damages_pulse = damages_function(warming_pulse))
 ```
 
 
