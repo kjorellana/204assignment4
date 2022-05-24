@@ -37,8 +37,14 @@ summary(model_damages_quadratic)
 
 ```{r}
 ggplot(damages,aes(x=warming_2, y=damages)) + 
-  geom_point()+
-  geom_line(data = damages, aes(x=warming_2, y=damages))
+  geom_point( size=1, color = "goldenrod") +
+  geom_line(data = damages, aes(x=warming_2, y=damages)) +
+  labs(x = "Warming (degrees C)", y = "Damages ($)", title = "Estimated damages (USD) per unit of additional warming (Celsius)") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) +
+  theme(strip.background = element_rect(color= "white", fill = "gray"))
+
+
 ```
 ## 2.Use warming.csv and your estimated damage function to predict damages in each year under the baseline climate and the pulse scenario. Make four plots: (1) damages over time without the pulse, (2) damages over time with the pulse, (3) the difference in damages over time that arises from the pulse, and (4) the difference in damages over time from the pulse per ton of CO2 (you can assume that each ton of the pulse causes the same amount of damage).
 
