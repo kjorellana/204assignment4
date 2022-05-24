@@ -63,6 +63,41 @@ warming <- warming %>%
   mutate(damages_difference_ton = (damages_function(warming_pulse) - damages_function(warming_baseline)) / 3500000000)
 ```
 
+```{r}
+
+ggplot(warming, aes(x = year, y = damages_baseline)) +
+  geom_point(size = 1, color= "blue") +
+  labs(x = "Year", y = "Damages ($)", title = "Baseline damages ($)") +
+  theme_minimal(14) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) +
+  theme(strip.background = element_rect(color= "white", fill = "gray"))
+
+ggplot(warming, aes(x = year, y = damages_pulse)) +
+  geom_point(size = 1, color= "blue") +
+  labs(x = "Year", y = "Damages ($)", title = "Damages ($) with pulse") +
+  theme_minimal(14) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) +
+  theme(strip.background = element_rect(color= "white", fill = "gray"))
+
+ggplot(warming, aes(x = year, y = damages_difference)) +
+  geom_point(size = 1, color="blue") +
+  labs(x = "Year", y = "Difference in Damages (with and w/o pulse)($)", title = "Difference in Damages") +
+  theme_minimal(14) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) +
+  theme(strip.background = element_rect(color= "white", fill = "gray"))
+
+ggplot(warming, aes(x = year, y = damages_difference_ton )) +
+  geom_point(size = 1, color="blue") +
+  labs(x = "Year", y = "Damages ($/tonCO2)", title = "Difference in Damages (per ton of CO2)") +
+  theme_minimal(14) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) +
+  theme(strip.background = element_rect(color= "white", fill = "gray"))
+```
+
 
 
 
@@ -93,6 +128,8 @@ social_cost_carbon <- c(sum(social_cost_damages$value_0),
                         sum(social_cost_damages$value_5), 
                         sum(social_cost_damages$value_6))
 scc <- data.frame(discount_rates, social_cost_carbon)
+
+
 ```
 
 
