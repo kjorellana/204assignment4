@@ -138,10 +138,12 @@ scc <- data.frame(discount_rates, social_cost_carbon)
 # graph the social cost of carbon and the discount rates (1 - 6%)
 
 ggplot(data = scc, aes(x = discount_rates, y = social_cost_carbon))+
-  geom_point(size = 1, color = "deeppink1")+
+  geom_point(size = 2, color = "deeppink1")+
   geom_line(color = "royalblue4")+ 
   labs(x= "Discount Rate (%)", y = "Social Cost of Carbon ($/ton CO2)", title = "Social Cost of Carbon by Discount Rate (1-6%)") + 
-  theme_minimal()
+  theme_grey(12)+
+  theme(plot.title = element_text(face = "bold"))+
+  theme(axis.title = element_text(face = "bold"))
 
 
 ```
