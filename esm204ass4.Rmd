@@ -15,6 +15,7 @@ library(tibble)
 library(here)
 ```
 
+## 1 
 
 ```{r}
 warming <- read_csv(here("data", "warming.csv"))
@@ -23,7 +24,24 @@ damages <- read_csv(here("data", "damages.csv"))
 ```
 
 ```{r}
-model_damages <- lm(damages ~ warming, data = damages)
-summary(model_damages)
+damages <- damages %>%
+mutate(damages, warming_2 = warming^2)
+```
+
+
+```{r}
+model_damages_quadratic <- lm(damages ~ 0 + warming + warming_2, data = damages)
+summary(model_damages_quadratic)
+```
+
+```{r}
+ggplot(damages,aes(x=warming_2, y=damages)) + 
+  geom_point()+
+  geom_line(data = damages, aes(x=warming_2, y=damages))
+```
+## 2 
+
+```{r}
+damages <- 
 ```
 
