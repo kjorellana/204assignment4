@@ -88,7 +88,19 @@ social_cost_damages <- warming %>%
   mutate(value_5 = damages_difference_ton * ((1 + 0.05)^(-(year-2022)))) %>%
   mutate(value_6 = damages_difference_ton * ((1 + 0.06)^(-(year-2022))))
 
+```
 
+```{r}
+## finding the discount rate 
 
+discount_rates <- c(0,1,2,3,4,5,6)
+social_cost_carbon <- c(sum(social_cost_damages$value_0), 
+                        sum(social_cost_damages$value_1), 
+                        sum(social_cost_damages$value_2), 
+                        sum(social_cost_damages$value_3), 
+                        sum(social_cost_damages$value_4), 
+                        sum(social_cost_damages$value_5), 
+                        sum(social_cost_damages$value_6))
+scc <- data.frame(discount_rates, social_cost_carbon)
 ```
 
