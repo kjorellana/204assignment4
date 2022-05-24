@@ -15,7 +15,7 @@ library(tibble)
 library(here)
 ```
 
-## 1 Using damages.csv, estimate a quadratic damage function relating the dollar value of damages to the change in global mean temperature. Estimate a model with a zero intercept because damages by construction must equal zero when there is no climate change. Plot your estimated damage function, overlaid with a scatterplot of the underlying data.
+### 1. Using damages.csv, estimate a quadratic damage function relating the dollar value of damages to the change in global mean temperature. Estimate a model with a zero intercept because damages by construction must equal zero when there is no climate change. Plot your estimated damage function, overlaid with a scatterplot of the underlying data.
 
 
 ```{r}
@@ -23,6 +23,8 @@ warming <- read_csv(here("data", "warming.csv"))
 
 damages <- read_csv(here("data", "damages.csv"))
 ```
+
+```{r}
 
 ```{r}
 damages <- damages %>%
@@ -42,7 +44,9 @@ ggplot(damages,aes(x=warming_2, y=damages)) +
   labs(x = "Warming (degrees C)", y = "Total Damages ($)", title = "Climate Change Damages Due to Warming") +
   theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
   theme(axis.title = element_text(face = "bold")) +
-  theme(strip.background = element_rect(color= "white", fill = "gray"))
+  theme(strip.background = element_rect(color= "white", fill = "grey"))
+
+
 
 
 ```
