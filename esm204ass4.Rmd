@@ -24,15 +24,14 @@ warming <- read_csv(here("data", "warming.csv"))
 damages <- read_csv(here("data", "damages.csv"))
 ```
 
-```{r}
+
+
+
+
 
 ```{r}
 damages <- damages %>%
 mutate(damages, warming_2 = warming^2)
-```
-
-
-```{r}
 model_damages_quadratic <- lm(damages ~ 0 + warming + warming_2, data = damages)
 summary(model_damages_quadratic)
 ```
@@ -61,18 +60,54 @@ damages_function <- function(warming){
 
 
 ```{r}
-warming %>%
+warming<-warming %>%
   mutate(damages_baseline = damages_function(warming_baseline)) %>%
   mutate(damages_pulse = damages_function(warming_pulse))%>%
   mutate(damages_difference = damages_function(warming_pulse) - damages_function(warming_baseline))%>%
   mutate(damages_differnce_ton = (damages_function(warming_pulse) - damages_function(warming_baseline)) / 3500000000)
-
-
+ 
 ```
+
+
 ```{r}
+## damage/time w/o pulse
 
+ggplot(warming, aes(x = year, y = damages_baseline)) +
+  geom_point(size = 1 , color= "blue") +
+  labs(x = "Year", y = "Damages ($)", title = "Damages (w/o pulse) ($)") +
+  theme_grey(14) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) +
+  theme(strip.background = element_rect(color= "white", fill = "gray"))
 ```
 
+```{r}
+# damage/time w/ pulse
+ggplot(warming, aes(x = year, y = damages_pulse)) +
+  geom_point(size = 1, color= "blue") +
+  labs(x = "Year", y = "Damages (with pulse)($)", title = "Damage with Pulse") +
+  theme_grey(14) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) +
+  theme(strip.background = element_rect(color= "white", fill = "gray"))
+
+# difference in damage/time due to pulse 
+ggplot(warming, aes(x = year, y = damages_difference)) +
+  geom_point(size = 1,color= "blue") +
+  labs(x = "Year", y = "Damages ($)", title = "Difference in Damages (with and w/o pulse)") +
+  theme_minimal(14) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) +
+  theme(strip.background = element_rect(color= "white", fill = "gray"))
+
+ggplot(warming, aes(x = year, y = damages_differnce_ton )) +
+  geom_point(size = 1, color= "blue") +
+  labs(x = "Year", y = "Damages ($/tonCO2)", title = "Difference in damages with pulse per ton of CO2") +
+  theme_minimal(14) +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold")) +
+  theme(axis.title = element_text(face = "bold")) +
+  theme(strip.background = element_rect(color= "white", fill = "gray"))
+```
 
 3. The SCC is the present discounted value of the stream of future damages caused by one additional ton of CO2. The Obama Administration used a discount rate of 3% to discount damages. Recently, New York State used a discount rate of 2%. Calculate and make a plot of the SCC (y-axis) against the discount rate (x-axis) for a reasonable range of discount rates. Explain the intuition for how the discount rate affects the SCC.
 
