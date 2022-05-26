@@ -96,7 +96,6 @@ ggplot(warming, aes(x = year, y = damages_difference_ton )) +
 ```
 
 
-
 ### 3. The SCC is the present discounted value of the stream of future damages caused by one additional ton of CO2. The Obama Administration used a discount rate of 3% to discount damages. Recently, New York State used a discount rate of 2%. Calculate and make a plot of the SCC (y-axis) against the discount rate (x-axis) for a reasonable range of discount rates. Explain the intuition for how the discount rate affects the SCC.
 
 ```{r}
@@ -128,7 +127,6 @@ social_cost_carbon <- c(sum(social_cost_damages$value_0),
 
 scc <- data.frame(discount_rates, social_cost_carbon)
 
-
 ```
 
 
@@ -147,6 +145,9 @@ ggplot(data = scc, aes(x = discount_rates, y = social_cost_carbon))+
 ```
 
 
+
+
+>>>>>>> e4f2d6bb33bfc6cde0f5144b439474e8963e791b
 4. The National Academies of Sciences, Engineering, and Medicine advised the government in a 2017 report to use the Ramsey Rule when discounting within the SCC calculation:
      r = ρ + ηg
 Using ρ = 0.001, η = 2, and g = 0.01, what is the SCC? Locate this point on your graph from above.
