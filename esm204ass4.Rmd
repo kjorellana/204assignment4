@@ -150,6 +150,9 @@ ggplot(data = scc, aes(x = discount_rates, y = social_cost_carbon))+
 
 
 
+```{r}
+hello 
+```
 
 
 4. The National Academies of Sciences, Engineering, and Medicine advised the government in a 2017 report to use the Ramsey Rule when discounting within the SCC calculation:
