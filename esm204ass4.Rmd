@@ -126,10 +126,6 @@ social_cost_carbon <- c(sum(social_cost_damages$value_0),
 #create dataframe with the social cost of carbon sums and the discount rate 
 
 scc <- data.frame(discount_rates, social_cost_carbon)
-
-<<<<<<< HEAD
-=======
-
 ```
 
 
@@ -145,16 +141,6 @@ ggplot(data = scc, aes(x = discount_rates, y = social_cost_carbon))+
   theme(axis.title = element_text(face = "bold"))
 
 
-```
-
-
-
-
-
-
-```{r}
-hello 
->>>>>>> 93bb76b5fd6a91c7c784878397388c2642d38a78
 ```
 
 
