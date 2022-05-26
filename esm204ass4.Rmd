@@ -4,7 +4,7 @@ author: "Cristina Mancilla, Kat Orellana, Ridhima Chaudhuri"
 date: "5/23/2022"
 output: html_document
 theme: journal
-code_folding: hide
+code_folding: hide 
 ---
 
 ```{r setup, include=TRUE, message = FALSE, warning = FALSE}
@@ -64,7 +64,7 @@ warming <- warming %>%
   mutate(damages_baseline = damages_function(warming_baseline)) %>%
   mutate(damages_pulse = damages_function(warming_pulse))%>%
   mutate(damages_difference = damages_function(warming_pulse) - damages_function(warming_baseline))%>%
-  mutate(damages_difference_ton = (damages_function(warming_pulse) - damages_function(warming_baseline)) / 3500000000)
+  mutate(damages_difference_ton = (damages_function(warming_pulse) - damages_function(warming_baseline)) / 35000000000)
 ```
 
 ```{r}
@@ -162,15 +162,49 @@ ggplot(data = scc, aes(x = discount_rates, y = social_cost_carbon))+
   theme(axis.title = element_text(face = "bold"))
 ```
 
+<<<<<<< HEAD
 **Figure 5:** The plot shows the social cost of carbon (SCC) caused by one additional unit of CO2 compared to the discount rate. 
 
 The discount rate affects the SCC because as the discount rate increases, the social cost of carbon decreases. A higher discount rate implies that people care less about the future than they do the present. 
-
-
+=======
 
 4. The National Academies of Sciences, Engineering, and Medicine advised the government in a 2017 report to use the Ramsey Rule when discounting within the SCC calculation:
      r = ρ + ηg
 Using ρ = 0.001, η = 2, and g = 0.01, what is the SCC? Locate this point on your graph from above.
+
+```{r}
+
+ramsey <- (0.001 + (2 * 0.01)) * 100
+
+
+ramsey_social_cost <- warming %>%
+  select(year, damages_difference_ton) %>%
+  mutate(ramsey_value = damages_difference_ton * ((1 + (ramsey/100))^(-(year-2022)))) 
+
+ramsey_sum_social <- sum(ramsey_social_cost$ramsey_value)
+
+  
+  
+  ggplot(data = scc, aes(x = discount_rates, y = social_cost_carbon))+
+  geom_point(size = 2, color = "deeppink1")+
+  geom_line(color = "royalblue4")+ 
+    geom_point(aes(x = ramsey, y = ramsey_sum_social), color = "maroon2", size = 3) +
+    geom_label(aes(x=2.1, label= "Ramsey Rule: Social Cost Of Carbon = $71.35", y=90), color= "maroon2", angle= 90) +
+  labs(x= "Discount Rate (%)", y = "Social Cost of Carbon ($/ton CO2)", title = "Social Cost of Carbon by Discount Rate (1-6%)") + 
+  theme_grey(12)+
+  theme(plot.title = element_text(face = "bold"))+
+  theme(axis.title = element_text(face = "bold"))
+
+```
+
+4. The National Academies of Sciences, Engineering, and Medicine advised the government in a 2017 report to use the Ramsey Rule when discounting within the SCC calculation:
+     r = ρ + ηg
+Using ρ = 0.001, η = 2, and g = 0.01, what is the SCC? Locate this point on your graph from above.
+
+
+```
+
+
 
 5. Now suppose there are two possible climate policies that can be pursued. Policy A is business as usual and Policy B is to take immediate and strong action on climate change. Use these facts:
 
