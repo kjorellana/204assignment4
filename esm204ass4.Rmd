@@ -186,7 +186,7 @@ ramsey_sum_social <- sum(ramsey_social_cost$ramsey_value)
   
   
   ggplot(data = scc, aes(x = discount_rates, y = social_cost_carbon))+
-  geom_point(size = 2, color = "deeppink1")+
+  geom_point(size = 2, color = "purple")+
   geom_line(color = "royalblue4")+ 
     geom_point(aes(x = ramsey, y = ramsey_sum_social), color = "maroon2", size = 3) +
     geom_label(aes(x=2.1, label= "Ramsey Rule: Social Cost Of Carbon = $71.35", y=90), color= "maroon2", angle= 90) +
@@ -197,12 +197,11 @@ ramsey_sum_social <- sum(ramsey_social_cost$ramsey_value)
 
 ```
 
-4. The National Academies of Sciences, Engineering, and Medicine advised the government in a 2017 report to use the Ramsey Rule when discounting within the SCC calculation:
-     r = ρ + ηg
-Using ρ = 0.001, η = 2, and g = 0.01, what is the SCC? Locate this point on your graph from above.
+
+**Figure 6:**  the pink dot represents the Ramsey Rate discount rate and Social Cost of Carbon calculation
 
 
-```
+
 
 
 
@@ -211,3 +210,9 @@ Using ρ = 0.001, η = 2, and g = 0.01, what is the SCC? Locate this point on yo
 • If you undertake Policy A there are two possible outcomes. Either warming will occur as in the “baseline” (i.e. “no-pulse”) dataset above (this happens with probability 0.5) or warming each year will be 1.5 times that in the “baseline” dataset (with probability 0.5). 
 
 
+## Question 6 
+Now suppose that society is risk averse. How do you think this would change your advice to Congress?
+
+**Policy B is more attractive in a society that is risk averse.**
+
+The utility function for the risk averse society would need to be provided for exact calculations. The general logic for favoring Policy B is rooted in the concave utility function of a risk averse society. Due to the uncertainty of costs for Policy A versus the known costs of policy B given a society averse to risk, Policy B would be recommended.
