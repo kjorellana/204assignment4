@@ -1,5 +1,5 @@
 ---
-title: "esm204ass4"
+title: "esm204assignment4"
 author: "Cristina Mancilla, Kat Orellana, Ridhima Chaudhuri"
 date: "5/23/2022"
 output: html_document
@@ -162,13 +162,12 @@ ggplot(data = scc, aes(x = discount_rates, y = social_cost_carbon))+
   theme(axis.title = element_text(face = "bold"))
 ```
 
-<<<<<<< HEAD
 **Figure 5:** The plot shows the social cost of carbon (SCC) caused by one additional unit of CO2 compared to the discount rate. 
 
-The discount rate affects the SCC because as the discount rate increases, the social cost of carbon decreases. A higher discount rate implies that people care less about the future than they do the present. 
-=======
+The discount rate affects the SCC because as the discount rate increases, the social cost of carbon decreases. A higher discount rate implies that people care more about the future than they do the present. 
 
-4. The National Academies of Sciences, Engineering, and Medicine advised the government in a 2017 report to use the Ramsey Rule when discounting within the SCC calculation:
+
+#### 4. The National Academies of Sciences, Engineering, and Medicine advised the government in a 2017 report to use the Ramsey Rule when discounting within the SCC calculation:
      r = ρ + ηg
 Using ρ = 0.001, η = 2, and g = 0.01, what is the SCC? Locate this point on your graph from above.
 
@@ -182,8 +181,7 @@ ramsey_social_cost <- warming %>%
   mutate(ramsey_value = damages_difference_ton * ((1 + (ramsey/100))^(-(year-2022)))) 
 
 ramsey_sum_social <- sum(ramsey_social_cost$ramsey_value)
-<<<<<<< HEAD
-=======
+
 
   
   
@@ -196,7 +194,7 @@ ramsey_sum_social <- sum(ramsey_social_cost$ramsey_value)
   theme_grey(12)+
   theme(plot.title = element_text(face = "bold"))+
   theme(axis.title = element_text(face = "bold"))
->>>>>>> 9bd5e81e0b79c86770b0fdce40aa04466b8c8c73
+
 
 ```
 
@@ -206,7 +204,7 @@ ramsey_sum_social <- sum(ramsey_social_cost$ramsey_value)
 
 
 
-5. Now suppose there are two possible climate policies that can be pursued. Policy A is business as usual and Policy B is to take immediate and strong action on climate change. Use these facts:
+#### 5. Now suppose there are two possible climate policies that can be pursued. Policy A is business as usual and Policy B is to take immediate and strong action on climate change. Use these facts:
 
 • If you undertake Policy A there are two possible outcomes. Either warming will occur as in the “baseline” (i.e. “no-pulse”) dataset above (this happens with probability 0.5) or warming each year will be 1.5 times that in the “baseline” dataset (with probability 0.5). 
 
@@ -259,12 +257,11 @@ mutate(total_cost_b = expected_b + costs)
 ```{r}
 ggplot(data = cost_df) + 
   geom_line(aes(x=costs, y = total_cost_a), color = "deeppink1")+
-  geom_line(aes(x=costs, y = total_cost_b), color = "royalblue4")
-
+  geom_line(aes(x=costs, y = total_cost_b), color = "royalblue4")+
+  labs(x = " Policy Cost (trillions of dollars)", y = "Total Expected Cost (trillions of dollars) ")
 ```
+**Since society is risk adverse in the above scenario, policy B is preferable.** 
 
-6. Now suppose that society is risk averse. How do you think this would change your advice to Congress?
+#### 6. Now suppose that society is risk averse. How do you think this would change your advice to Congress?
 
-**Policy B is more attractive in a society that is risk averse.**
-
-The utility function for the risk averse society would need to be provided for exact calculations. The general logic for favoring Policy B is rooted in the concave utility function of a risk averse society. Due to the uncertainty of costs for Policy A versus the known costs of policy B given a society averse to risk, Policy B would be recommended.
+**In a risk adverse society, Policy B is more attractive overall.** The utility function for the risk averse society would be concave. The general logic for favoring Policy B is rooted in the concave utility function of a risk averse society. Due to the uncertainty of costs for Policy A versus the known costs of policy B given a society averse to risk, Policy B would be recommended, but only after the intersection point where the policy cost is about $18 quadrillion dollars. 
