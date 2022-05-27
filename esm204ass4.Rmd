@@ -168,8 +168,6 @@ ramsey_social_cost <- warming %>%
   mutate(ramsey_value = damages_difference_ton * ((1 + (ramsey/100))^(-(year-2022)))) 
 
 ramsey_sum_social <- sum(ramsey_social_cost$ramsey_value)
-  
-
 
 ```
 
@@ -178,4 +176,56 @@ ramsey_sum_social <- sum(ramsey_social_cost$ramsey_value)
 
 • If you undertake Policy A there are two possible outcomes. Either warming will occur as in the “baseline” (i.e. “no-pulse”) dataset above (this happens with probability 0.5) or warming each year will be 1.5 times that in the “baseline” dataset (with probability 0.5). 
 
+Under Policy B, warming will continue until 2050 as in the “baseline” dataset, and then
+will stabilize at 1.29 degrees and stay that way forever.
+• Society is risk neutral
+• Use a discount rate of 2%
+
+```{r}
+with_policies <- warming %>%
+  mutate(policy_a = 1.5 *warming_baseline) %>% 
+  mutate(damages_a = damages_function(policy_a)) %>%
+  mutate(damages_a_discount = damages_a/(1.02^(-(year-2022)))) %>%
+
+  mutate(policy_b = ifelse(year < 2050, warming_baseline, 1.29)) %>%
+  mutate(damages_b = damages_function(policy_b)) %>%
+  mutate(damages_b_discounted = damages_b/(1.02^(-(year-2022)))) %>%
+
+
+  mutate(baseline_discounted = damages_baseline/(1.02^(-(year-2022))))
+```
+
+
+```{r}
+expected_a <- 0.5*sum(with_policies$damages_baseline_discounted) + 0.5 * sum(with_policies$damages_a_discount)
+expected_b <-sum(with_policies$damages_b_discounted)
+```
+
+
+```{r}
+# creating a dataframe for cost 
+
+cost_a <- function(x){expected_a}
+cost_b <- function(x){expected_b+x}
+
+costs <- c(0,1e16, 2e16, 3e16, 4e16, 5e16, 6e16)
+total_cost_a <- c(NA, NA, NA, NA, NA, NA, NA)
+total_cost_b <- c(NA, NA, NA, NA, NA, NA, NA)
+
+cost_df <- data.frame(costs, total_cost_a, total_cost_b)
+
+# fill in the empty columns in the dataframe
+
+cost_df <- cost_df %>%
+mutate(total_cost_a = expected_a)%>%
+mutate(total_cost_b = expected_b + costs) 
+
+```
+
+```{r}
+ggplot(data = cost_df) + 
+  geom_line(aes(x=costs, y = total_cost_a), color = "deeppink1")+
+  geom_line(aes(x=costs, y = total_cost_b), color = "royalblue4")
+
+```
 
