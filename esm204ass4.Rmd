@@ -260,7 +260,7 @@ ggplot(data = cost_df) +
   geom_line(aes(x=costs, y = total_cost_b), color = "royalblue4")+
   labs(x = " Policy Cost (trillions of dollars)", y = "Total Expected Cost (trillions of dollars) ")
 ```
-**Since society is risk adverse in the above scenario, policy B is preferable.** 
+**Since society is risk neutral in the above scenario, policy A is preferable. Society in this case cares more about the ultimate value of the effects of the climate change policy, not the risk involved. ** 
 
 #### 6. Now suppose that society is risk averse. How do you think this would change your advice to Congress?
 
